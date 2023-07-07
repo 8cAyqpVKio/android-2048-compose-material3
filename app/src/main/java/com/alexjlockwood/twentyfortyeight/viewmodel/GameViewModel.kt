@@ -7,9 +7,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.alexjlockwood.twentyfortyeight.domain.*
 import com.alexjlockwood.twentyfortyeight.repository.GameRepository
-import dagger.hilt.android.lifecycle.HiltViewModel
+import com.moriatsushi.koject.Provides
+import com.moriatsushi.koject.android.viewmodel.ViewModelComponent
 import java.lang.Math.floorMod
-import javax.inject.Inject
 import kotlin.math.max
 
 const val GRID_SIZE = 4
@@ -19,10 +19,11 @@ private val EMPTY_GRID = (0 until GRID_SIZE).map { arrayOfNulls<Tile?>(GRID_SIZE
 /**
  * View model class that contains the logic that powers the 2048 game.
  */
-@HiltViewModel
-class GameViewModel @Inject constructor (
-    private val gameRepository: GameRepository
-    ) : ViewModel() {
+@ViewModelComponent
+@Provides
+class GameViewModel (
+    private val gameRepository: GameRepository,
+) : ViewModel() {
 
     private var grid: List<List<Tile?>> = EMPTY_GRID
     var gridTileMovements by mutableStateOf<List<GridTileMovement>>(listOf())

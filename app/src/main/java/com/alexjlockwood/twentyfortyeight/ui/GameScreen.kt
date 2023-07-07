@@ -6,13 +6,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.alexjlockwood.twentyfortyeight.R
 import com.alexjlockwood.twentyfortyeight.viewmodel.GameViewModel
+import com.moriatsushi.koject.compose.viewmodel.injectViewModel
 
 @Composable
 fun GameScreen(
-    gameViewModel: GameViewModel = hiltViewModel()
+    gameViewModel: GameViewModel = injectViewModel()
 ) {
     AppTheme {
         var shouldShowNewGameDialog by remember { mutableStateOf(false) }
